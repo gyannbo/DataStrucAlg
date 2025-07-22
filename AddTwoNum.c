@@ -14,14 +14,32 @@ struct ListNode {
 	struct ListNode *next;
 };
 
+unsigned int MyPow(unsigned int num, short pow)
+{
+	unsigned int x = 1;
+
+	while (pow--)
+	{
+		x *= num;
+	}
+	return x;
+}
+
+
 unsigned int ListToUint(struct ListNode *list)
 {
-
-
-
-struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
-    
+	unsigned int num = 0;
+	short power = 0;
+	while (list)
+	{
+		num += (list->val * MyPow(10, power));
+		power++;
+		list = list->next;
+	}
+	return (num);
 }
+
+
 
 
 unsigned int	GetDigNum(unsigned int number)
@@ -51,6 +69,16 @@ struct ListNode	*FillList(unsigned int number, unsigned int NumDig)
 	return (list);
 }
 
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+	unsigned int first = ListToUint(l1);
+	unsigned int second = ListToUint(l2);
+	unsigned int result = first + second;
+
+	printf("%d\n", first);
+	printf("%d\n", second);
+	return (FillList(result, GetDigNum(result)));
+}
+
 void TestListVal(struct ListNode *list)
 {
 	struct ListNode *temp;
@@ -67,18 +95,21 @@ void TestListVal(struct ListNode *list)
 
 int main()
 {
-	unsigned int FirstNum = 765;
-	unsigned int SecondNum = 34;
+	unsigned int FirstNum = 9;
+	unsigned int SecondNum = 1999999999;
 	struct ListNode *FirstList = FillList(FirstNum, GetDigNum(FirstNum));
 	struct ListNode *SecondList = FillList(SecondNum, GetDigNum(SecondNum));
 	struct ListNode *result;
 
+	result = addTwoNumbers(FirstList, SecondList);
 	TestListVal(FirstList);
 	TestListVal(SecondList);
-	result = addTwoNumbers(FirstList, SecondList);
+	TestListVal(result);
 	return (0);
 }
 
+
+// JE DOIS REFAIRE AVEC UNE AUTRE METHODE QUI NE CONVERTI PAS EN INT LES NOMBRE MAIS FAIT DES OPERATIONS SUR LES LIST DIRECTEMENT
 
 	// tests  GetDigNum //	
 //	printf("%d\n",	GetDigNum(765));

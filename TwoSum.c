@@ -1,14 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-
-/**
- * Note: The returned array must be malloced, assume caller calls free().
- */
 int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
    int	i = 0;
-   int	y = 0;
+   int	y = 1;
 
 	int *ans = malloc(sizeof(int) * 2);
 	if (!ans)
@@ -21,11 +16,12 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
 			{
 				ans[0] = i;
 				ans[1] = y;
+				*returnSize = 2;
 				return ans;
 			}
 			y++;
 		}
-		y = 0;
+		y = (i + 2);
 		i++;
 	}
 	return (NULL);
@@ -42,4 +38,6 @@ int	main()
 	free(ans);
 	return (0);
 }	
-		
+
+
+// check the hash tables to do the solution that is more performant, and understand why		

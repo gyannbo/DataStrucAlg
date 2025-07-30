@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 /**
  * Definition for singly-linked list.
@@ -14,9 +15,9 @@ struct ListNode {
 	struct ListNode *next;
 };
 
-unsigned int MyPow(unsigned int num, short pow)
+double MyPow(unsigned int num, short pow)
 {
-	unsigned int x = 1;
+	double x = 1;
 
 	while (pow--)
 	{
@@ -25,29 +26,26 @@ unsigned int MyPow(unsigned int num, short pow)
 	return x;
 }
 
-
-unsigned int ListToUint(struct ListNode *list)
+double ListToUint(struct ListNode *list)
 {
-	unsigned int num = 0;
+	double num = 0;
 	short power = 0;
 	while (list)
 	{
-		num += (list->val * MyPow(10, power));
+		num += ((double)list->val * MyPow(10, power));
+		printf("%f\n", num);
 		power++;
 		list = list->next;
 	}
 	return (num);
 }
 
-
-
-
-unsigned int	GetDigNum(unsigned int number)
+unsigned int	GetDigNum(double number)
 {
 	int result = 0;
 	if (!number)
 		return (1);
-	while(number)
+	while(number >= 1)
 	{
 		number /= 10;
 		result++;
@@ -55,7 +53,7 @@ unsigned int	GetDigNum(unsigned int number)
 	return result;
 }
 			
-struct ListNode	*FillList(unsigned int number, unsigned int NumDig)
+struct ListNode	*FillList(double number, unsigned int NumDig)
 {
 	struct ListNode *list;
 	if (NumDig)
@@ -64,18 +62,19 @@ struct ListNode	*FillList(unsigned int number, unsigned int NumDig)
 		return (NULL);
 	if (!list)
 		exit(-1);
-	list->val = number % 10;
+	list->val = fmod(number, 10);
 	list->next = FillList((number / 10), (NumDig - 1));
 	return (list);
 }
 
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
-	unsigned int first = ListToUint(l1);
-	unsigned int second = ListToUint(l2);
-	unsigned int result = first + second;
+	double first = ListToUint(l1);
+	double second = ListToUint(l2);
+	double result = (double)first + (double)second;
 
-	printf("%d\n", first);
-	printf("%d\n", second);
+//	printf("%f\n", first);
+//	printf("%f\n", second);
+//	printf("voici %f\n", result);
 	return (FillList(result, GetDigNum(result)));
 }
 
@@ -95,15 +94,18 @@ void TestListVal(struct ListNode *list)
 
 int main()
 {
-	unsigned int FirstNum = 9;
-	unsigned int SecondNum = 1999999999;
+	double SecondNum = 11111111111;
+	double FirstNum = 11111111111;
 	struct ListNode *FirstList = FillList(FirstNum, GetDigNum(FirstNum));
 	struct ListNode *SecondList = FillList(SecondNum, GetDigNum(SecondNum));
 	struct ListNode *result;
 
 	result = addTwoNumbers(FirstList, SecondList);
+	printf("first\n");
 	TestListVal(FirstList);
+	printf("sec\n");
 	TestListVal(SecondList);
+	printf("\n");
 	TestListVal(result);
 	return (0);
 }
@@ -116,5 +118,5 @@ int main()
 //	printf("%d\n",	GetDigNum(0));
 //	printf("%d\n",	GetDigNum(99920));
 
-	
 
+	

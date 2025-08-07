@@ -8,3 +8,7 @@
 // sur chaque éléments de l'index.
 // je pense que pour ce problème je n'ai pas besoin de faire de hash fonction et je peux juste mettre les nombres.
 // Non, avec les contraintes on est obligé de faire avec une hash fonction parce que sinon c"est beaucoup trop grand
+
+
+// faire chaque version de la hash function, division, multiplication, et la 3e, et aussi comprendre lhistoire des less significant
+// bits sur la premiere version etc.. et ensuite faire twosum en version hachée

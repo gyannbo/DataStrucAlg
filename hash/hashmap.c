@@ -12,3 +12,9 @@
 
 // faire chaque version de la hash function, division, multiplication, et la 3e, et aussi comprendre lhistoire des less significant
 // bits sur la premiere version etc.. et ensuite faire twosum en version hachée
+
+
+// do division method, multiplication method, and universal hashing avaec des keys statiques
+
+// je sais pas si je vais réussir tout de suite à faire le universal hashing car faut vraiment bien comprendre les
+// math pour pas se planter sur la deuxieme table de hachage, ça va me prendre du temps.

@@ -18,3 +18,7 @@
 
 // je sais pas si je vais réussir tout de suite à faire le universal hashing car faut vraiment bien comprendre les
 // math pour pas se planter sur la deuxieme table de hachage, ça va me prendre du temps.
+//
+//
+// Aussi noter la technique pour avoir ce qu'il y a après la virugule: mod 1, et comprendre pourquoi il y a les rounding
+// error sur les float

@@ -69,3 +69,11 @@ int main()
 //		hsearch(
 	return (0);
 }
+
+
+
+// regarder pour le crc32 pour faire une hash fonction maison
+
+// https://stackoverflow.com/questions/190229/where-is-the-itoa-function-in-linux
+//  http://www.burtleburtle.net/bob/hash/doobs.html
+// https://www.reddit.com/r/programminghorror/comments/uitjxl/hsearch_why_is_this_crap_in_libc/

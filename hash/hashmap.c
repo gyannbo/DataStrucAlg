@@ -22,3 +22,50 @@
 //
 // Aussi noter la technique pour avoir ce qu'il y a après la virugule: mod 1, et comprendre pourquoi il y a les rounding
 // error sur les float
+
+// On va plutot essayer de faire avec la libc déjà, donc avec hcreate
+
+#define _GNU_SOURCE
+#include <search.h>
+#include <stdlib.h>
+
+// pour l'instant on va juste faire au plus simple, on additionne tous les chars de la string. On verra après pour faire des meilleures
+// hash func.
+
+#define NUMBOFKEYS 111
+
+ENTRY *HashFunc(char *s)
+{
+	ENTRY *data = malloc(sizeof(ENTRY));
+	int i = 0;
+	unsigned int result = 0;
+
+	while(s[i])
+	{
+		result += s[i];
+		i++;
+	}
+
+	// on va utiliser sprintf pour voir, plutot que itoa, histoire d'utiliser des nouvelles fonctions
+	data->key = itoa(result % NUMBOFKEYS);		
+	data->data = s;
+	return(data);
+}
+
+int main()
+{
+	int tab[] = {1234, 2222 ,44 ,3 ,554 ,66152, 4432 ,5};
+
+	// pas du tout bon pour l'argument nel içi, il ne faut pas regarder le nombre d'éléments
+	// mais plutot le nombre de clés possible. Donc pour le leetcode il faudrait plutot faire en fonction des bornes données dans le problème
+//	size_t size = sizeof(tab) / sizeof(int);
+
+	struct hsearch_data htab;
+	hcreate_r(NUMBOFKEYS, &htab);
+	
+	int i = 0;
+//	while (i < size)
+//	{
+//		hsearch(
+	return (0);
+}

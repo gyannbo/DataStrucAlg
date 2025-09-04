@@ -20,8 +20,9 @@ void	somePrintFuncTab(int *tab)
 
 int main()
 {
-	// this is called a compound literal apparently
-	somePrintFunc((Exemple){10, 11});
+	// this is called a compound literal apparently, two syntax possible :
+	somePrintFunc((Exemple){10,  11});
+	somePrintFunc((Exemple){.a = 10, .b =  11});
 	somePrintFuncTab((int []){210, 3411});
 	return (0);
 }

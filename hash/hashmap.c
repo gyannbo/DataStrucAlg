@@ -26,20 +26,37 @@
 //
 int main()
 {
-	int tab[] = {1234, 2222 ,44 ,3 ,554 ,66152, 4432 ,5};
+	char *tab[] = {"1234", "2222" ,"44" ,"3" ,"554" ,"66152", "4432" ,"5"};
+	unsigned int size = sizeof(tab) / sizeof(tab[0]);	
+	char stringmem[100];
+	ENTRY * retval = NULL;
 
-
-	struct hsearch_data htab;
+	struct hsearch_data htab = { 0 };
 	hcreate_r(NUMBOFKEYS, &htab);
-	printf("%zu\n", sizeof(tab) / sizeof(tab[0]));	
 	int i = 0;
-//	while (i < size)
-//	{
-//		hsearch(
+
+	while ( i < size)
+	{
+		sprintf(stringmem, "%d", atoi(tab[i]) % NUMBOFKEYS); 
+		ENTRY ex ;
+		ex.key = stringmem;
+		ex.data = tab[i];
+		//hsearch_r(ex, ENTER, &retval, &htab);
+		hsearch_r((ENTRY){ stringmem, tab[i]}, ENTER, &retval, &htab);
+		hsearch_r(ex, FIND, &retval, &htab);
+		//printf("%s\n", retval->data);
+		printf("%s\n", retval->key); 
+		i++;
+	}
+	hdestroy_r(&htab);
 	return (0);
 }
 
-
+// 4-9-25
+// Ce qui a fait fonctionner cette lib:
+// 		-initialiser la struct htab a 0 via le = { 0 }
+// 		-avoir la data en strings
+// 		-comme je pensais je pouvais avoir la struct keys/data en compound literal`
 
 
 //use fundamentals of data struc in c book
@@ -82,3 +99,18 @@ int main()
 //finir hash func
 //faire fonctioinner hsearch
 //essayer de faire fonctionner sans hash fonction, juste avec les numéros dans des strings avec modulo nb keys etc...
+//
+//
+//
+//
+//
+//
+
+
+// pour la prochaine fois, faire fonctionner le probleme de leetcode avec le bout de code fonctionnel que j'ai fait
+
+// ensuite il faudra essayer de faire les techniques du livres, toutes les tester
+
+// au passage, je pense vraiment que pour devenir bon, il faut juste ponçer le livre des algos de a a z et tous les autres
+// truc de base des autre concepts, os, compi etc, et sur 10 ans je peux devenir bon
+

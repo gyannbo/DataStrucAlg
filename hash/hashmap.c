@@ -1,3 +1,47 @@
+#define _GNU_SOURCE
+#include <search.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+
+#define NUMBOFKEYS 111
+
+//ENTRY *HashFunc(char *s)
+//{
+//	ENTRY *data = malloc(sizeof(ENTRY));
+//	int i = 0;
+//	unsigned int result = 0;
+//
+//	while(s[i])
+//	{
+//		result += s[i];
+//		i++;
+//	}
+//
+//	// on va utiliser sprintf pour voir, plutot que itoa, histoire d'utiliser des nouvelles fonctions
+//	data->key = itoa(result % NUMBOFKEYS);		
+//	data->data = s;
+//	return(data);
+//}
+//
+int main()
+{
+	int tab[] = {1234, 2222 ,44 ,3 ,554 ,66152, 4432 ,5};
+
+
+	struct hsearch_data htab;
+	hcreate_r(NUMBOFKEYS, &htab);
+	printf("%zu\n", sizeof(tab) / sizeof(tab[0]));	
+	int i = 0;
+//	while (i < size)
+//	{
+//		hsearch(
+	return (0);
+}
+
+
+
+
 //use fundamentals of data struc in c book
 //non, utiliser plutot le intro to algo
 
@@ -24,56 +68,17 @@
 // error sur les float
 
 // On va plutot essayer de faire avec la libc déjà, donc avec hcreate
-
-#define _GNU_SOURCE
-#include <search.h>
-#include <stdlib.h>
-
-// pour l'instant on va juste faire au plus simple, on additionne tous les chars de la string. On verra après pour faire des meilleures
-// hash func.
-
-#define NUMBOFKEYS 111
-
-ENTRY *HashFunc(char *s)
-{
-	ENTRY *data = malloc(sizeof(ENTRY));
-	int i = 0;
-	unsigned int result = 0;
-
-	while(s[i])
-	{
-		result += s[i];
-		i++;
-	}
-
-	// on va utiliser sprintf pour voir, plutot que itoa, histoire d'utiliser des nouvelles fonctions
-	data->key = itoa(result % NUMBOFKEYS);		
-	data->data = s;
-	return(data);
-}
-
-int main()
-{
-	int tab[] = {1234, 2222 ,44 ,3 ,554 ,66152, 4432 ,5};
-
-	// pas du tout bon pour l'argument nel içi, il ne faut pas regarder le nombre d'éléments
-	// mais plutot le nombre de clés possible. Donc pour le leetcode il faudrait plutot faire en fonction des bornes données dans le problème
-//	size_t size = sizeof(tab) / sizeof(int);
-
-	struct hsearch_data htab;
-	hcreate_r(NUMBOFKEYS, &htab);
-	
-	int i = 0;
-//	while (i < size)
-//	{
-//		hsearch(
-	return (0);
-}
-
-
-
 // regarder pour le crc32 pour faire une hash fonction maison
 
 // https://stackoverflow.com/questions/190229/where-is-the-itoa-function-in-linux
 //  http://www.burtleburtle.net/bob/hash/doobs.html
 // https://www.reddit.com/r/programminghorror/comments/uitjxl/hsearch_why_is_this_crap_in_libc/
+// pour l'instant on va juste faire au plus simple, on additionne tous les chars de la string. On verra après pour faire des meilleures
+// hash func.
+
+//----------
+//4-9-25
+//
+//finir hash func
+//faire fonctioinner hsearch
+//essayer de faire fonctionner sans hash fonction, juste avec les numéros dans des strings avec modulo nb keys etc...
